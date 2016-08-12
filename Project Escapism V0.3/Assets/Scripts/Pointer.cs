@@ -11,6 +11,8 @@ public class Pointer : MonoBehaviour {
 
 	public GameObject placedObj;
 
+	public GameObject leftHand;
+
 	public float rotationSpeed = 1.0f;
 
 	public float laserWidth = 0.01F;
@@ -56,7 +58,7 @@ public class Pointer : MonoBehaviour {
 		Ray pointerRay = new Ray (this.transform.position, this.transform.forward);
 		bool hit = Physics.Raycast (pointerRay, out hitPos, 100, layerMask);
 		if (hit) {
-			if (hitPos.collider.tag == "environment" || hitPos.collider.tag == "object") {
+			if (hitPos.collider.tag == "environment" || hitPos.collider.tag == "object" || hitPos.collider.tag == "ui") {
 				myLine.enabled = true;
 				myLine.SetPosition (0, transform.position);
 				myLine.SetPosition (1, hitPos.point);
@@ -74,10 +76,10 @@ public class Pointer : MonoBehaviour {
 					if (hitPos.collider.tag == "environment" || hitPos.collider.tag == "object") {
 						if (firstTime) {
 							shift ();
-							manipObj = (GameObject)Instantiate (placedObj, shift(), Quaternion.identity);
+							manipObj = (GameObject)Instantiate (placedObj, shift (), Quaternion.identity);
 							firstTime = false;
 						} else {
-							manipObj = (GameObject)Instantiate (placedObj, shift(), rotation);
+							manipObj = (GameObject)Instantiate (placedObj, shift (), rotation);
 						}
 
 						manipObj.tag = "manip";
@@ -89,8 +91,10 @@ public class Pointer : MonoBehaviour {
 				Destroy (manipObj);
 				alreadyInst = false;
 			} else {//repositioning
+
 				reposition ();
-                /*
+                
+				/*
 				//rotate vive
 				Vector2 touchPos = device.GetAxis();
 				if (touchPos.x > 0.5 && device.GetPress (touchpad)) {
@@ -110,8 +114,9 @@ public class Pointer : MonoBehaviour {
 					alreadyInst = false;
 				}
                 */
+
 				//rotate keyboard
-				if (Input.GetKey(KeyCode.Q)) {
+				if (Input.GetKey (KeyCode.Q)) {
 					manipObj.transform.Rotate (Vector3.up * rotationSpeed, Space.Self);
 				}
 				if (Input.GetKey (KeyCode.E)) {
@@ -129,7 +134,16 @@ public class Pointer : MonoBehaviour {
 				}
 			}
 				
+		} else {
+			if (hit) {
+				if (hitPos.collider.tag == "ui") {
+					if (Input.GetKeyDown (KeyCode.G)) {
+						leftHand.GetComponent<objectSelect> ().selectObj ();
+					}
+				}
+			}
 		}
+
 
 		//delete the objects
         /*
@@ -140,6 +154,9 @@ public class Pointer : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.D)) {
 			deleteObjs ();
 		}
+
+
+
 
 	}
 

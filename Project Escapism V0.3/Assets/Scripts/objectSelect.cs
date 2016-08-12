@@ -14,6 +14,15 @@ public class objectSelect : MonoBehaviour {
 
 	Pointer rightScript;
 
+
+	public void selectObj(){
+		Destroy(GameObject.FindWithTag("manip"));
+		rightScript.alreadyInst = false;
+		rightScript.firstTime = true;
+		toSend = (GameObject)Resources.Load ("Prefabs/Sphere Test");
+		rightScript.placedObj = toSend;
+	}
+
 	void Start () {
 		//controller = GetComponent<SteamVR_TrackedObject> ();
 		rightScript = righthand.GetComponent<Pointer>();
