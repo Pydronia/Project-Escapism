@@ -9,6 +9,7 @@ public class objectSelect : MonoBehaviour {
 	//SteamVR_TrackedObject controller;
 
 	public GameObject righthand;
+	public GameObject currentPoint;
 
 	GameObject toSend;
 
@@ -49,19 +50,31 @@ public class objectSelect : MonoBehaviour {
 		}
         */
 		//keyboard testing
-		if (Input.GetKeyDown (KeyCode.S)) {
-			Destroy(GameObject.FindWithTag("manip"));
-			rightScript.alreadyInst = false;
-			rightScript.firstTime = true;
-			toSend = (GameObject)Resources.Load ("Prefabs/Sphere Test");
-			rightScript.placedObj = toSend;
+		if (currentPoint) {
+			if (currentPoint.tag == "speaker") {
+				if (Input.GetKeyDown (KeyCode.S)) {
+					Destroy (GameObject.FindWithTag ("manip"));
+					rightScript.alreadyInst = false;
+					rightScript.firstTime = true;
+					toSend = (GameObject)Resources.Load ("Prefabs/Cube Test");
+					rightScript.placedObj = toSend;
+				}
+			}
+
+			if (currentPoint.tag == "effect1") {
+				if (Input.GetKeyDown (KeyCode.S)) {
+					Destroy (GameObject.FindWithTag ("manip"));
+					rightScript.alreadyInst = false;
+					rightScript.firstTime = true;
+					toSend = (GameObject)Resources.Load ("Prefabs/Sphere Test");
+					rightScript.placedObj = toSend;
+				}
+				
+			}
 		}
-		if (Input.GetKeyDown (KeyCode.F)) {
-			Destroy(GameObject.FindWithTag("manip"));
-			rightScript.alreadyInst = false;
-			rightScript.firstTime = true;
-			toSend = (GameObject)Resources.Load ("Prefabs/Cube Test");
-			rightScript.placedObj = toSend;
-		}
+
+
+
+
 	}
 }

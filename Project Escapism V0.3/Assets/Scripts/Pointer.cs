@@ -58,7 +58,7 @@ public class Pointer : MonoBehaviour {
 		Ray pointerRay = new Ray (this.transform.position, this.transform.forward);
 		bool hit = Physics.Raycast (pointerRay, out hitPos, 100, layerMask);
 		if (hit) {
-			if (hitPos.collider.tag == "environment" || hitPos.collider.tag == "object" || hitPos.collider.tag == "ui") {
+			if (hitPos.collider.tag == "environment" || hitPos.collider.tag == "object" || hitPos.collider.tag == "ui" || hitPos.collider.tag == "speaker"  || hitPos.collider.tag == "effect1") {
 				myLine.enabled = true;
 				myLine.SetPosition (0, transform.position);
 				myLine.SetPosition (1, hitPos.point);
@@ -136,11 +136,7 @@ public class Pointer : MonoBehaviour {
 				
 		} else {
 			if (hit) {
-				if (hitPos.collider.tag == "ui") {
-					if (Input.GetKeyDown (KeyCode.G)) {
-						leftHand.GetComponent<objectSelect> ().selectObj ();
-					}
-				}
+				leftHand.GetComponent<objectSelect> ().currentPoint = hitPos.transform.gameObject;
 			}
 		}
 
