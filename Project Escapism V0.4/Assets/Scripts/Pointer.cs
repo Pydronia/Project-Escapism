@@ -84,7 +84,6 @@ public class Pointer : MonoBehaviour {
 							manipObj = (GameObject)Instantiate (placedObj, shift (), rotation);
 						}
 
-						manipObj.tag = "manip";
 						alreadyInst = true;
 					} 
 				}

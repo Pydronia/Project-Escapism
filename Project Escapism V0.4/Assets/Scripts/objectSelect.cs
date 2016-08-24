@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿ using UnityEngine;
 using System.Collections;
 
 public class objectSelect : MonoBehaviour {
@@ -14,20 +14,15 @@ public class objectSelect : MonoBehaviour {
     public GameObject UI;
 
     public GameObject leftSpeaker;
-    //public GameObject rightSpeaker;
+    public GameObject rightSpeaker;
 
-    public GameObject effect1;
-   // public GameObject effect2;
+    //public GameObject effect1;
+    //public GameObject effect2;
 
+    public AudioClip clip;
+
+    GameObject[] speakerArray;
 	Pointer rightScript;
-
-
-	public void selectObj(){
-		Destroy(GameObject.FindWithTag("manip"));
-		rightScript.alreadyInst = false;
-		rightScript.firstTime = true;
-		rightScript.placedObj = effect1;
-	}
 
 	void Start () {
 		//controller = GetComponent<SteamVR_TrackedObject> ();
@@ -69,7 +64,7 @@ public class objectSelect : MonoBehaviour {
 
 		//keyboard testing
 		if (currentPoint) {
-			if (currentPoint.tag == "speaker") {
+			if (currentPoint.tag == "leftSpeaker") {
 				if (Input.GetKeyDown (KeyCode.S)) {
                     rightScript.manipObj = null;
 					rightScript.alreadyInst = false;
@@ -78,19 +73,42 @@ public class objectSelect : MonoBehaviour {
 				}
 			}
 
-			if (currentPoint.tag == "effect1") {
+			if (currentPoint.tag == "rightSpeaker") {
 				if (Input.GetKeyDown (KeyCode.S)) {
                     rightScript.manipObj = null;
                     rightScript.alreadyInst = false;
 					rightScript.firstTime = true;
-					rightScript.placedObj = effect1;
+					rightScript.placedObj = rightSpeaker;
 				}
 				
 			}
+
+            if(currentPoint.tag == "play") {
+                if (Input.GetKeyDown(KeyCode.S)) {
+                    //atm sends and plays at the same time
+                    sendMusic();
+                    playMusic();
+                }
+            }
 		}
 
 
 
 
 	}
+
+
+    void sendMusic() {//simply sends correct music, doesnt play
+        speakerArray = GameObject.FindGameObjectsWithTag("speakerObj");
+        for(int i = 0; i < speakerArray.Length; i++) {
+            speakerArray[i].GetComponent<AudioSource>().clip = clip;
+        }
+    }
+
+    void playMusic() {
+        double playTime = AudioSettings.dspTime + 2.0F;
+        for (int i = 0; i < speakerArray.Length; i++) {
+            speakerArray[i].GetComponent<AudioSource>().PlayScheduled(playTime);
+        }
+    }
 }
