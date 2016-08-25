@@ -63,8 +63,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Packages\CubeControllerInput.cs" />
+    <Compile Include="Assets\Packages\UIIgnoreRaycast.cs" />
+    <Compile Include="Assets\Packages\ViveControllerInput.cs" />
     <Compile Include="Assets\Scripts\Pointer.cs" />
     <Compile Include="Assets\Scripts\objectSelect.cs" />
+    <Compile Include="Assets\uFileBrowser\Examples\Directory Select\directory_example.cs" />
+    <Compile Include="Assets\uFileBrowser\Examples\Images Selection\generic_example.cs" />
+    <Compile Include="Assets\uFileBrowser\Scripts\DirectoryButton.cs" />
+    <Compile Include="Assets\uFileBrowser\Scripts\FileBrowser.cs" />
+    <Compile Include="Assets\uFileBrowser\Scripts\FileButton.cs" />
+    <Compile Include="Assets\uFileBrowser\Scripts\FileIcon.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
