@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB9-8B4A-11D0-8D11-00A0C91BC942}") = "TBE_Components", "TBE_Components.dll", "{1C76B768-F4A7-4106-A343-00636CBBE2C4}"
+	ProjectSection(MonoDevelopProperties) = preProject
+		name = TBE_Components
+		Configurations = $0
+		$0.Configuration = $1
+		$1.name = Default
+		$1.OutputPath = .\
+		$1.ctype = ProjectConfiguration
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Default|Any CPU = Default|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1C76B768-F4A7-4106-A343-00636CBBE2C4}.Default|Any CPU.ActiveCfg = Default|Any CPU
+		{1C76B768-F4A7-4106-A343-00636CBBE2C4}.Default|Any CPU.Build.0 = Default|Any CPU
+	EndGlobalSection
+EndGlobal
