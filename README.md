@@ -1,2 +1,2 @@
 # Project-Escapism
-A HTC Vive Project for YICTE 2016
+A VR audio-scape with audio visualisation elements and spatial audio. A project for YICTE 2016.
